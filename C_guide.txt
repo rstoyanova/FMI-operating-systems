@@ -1,0 +1,154 @@
+﻿                                               C GUIDE from terminal
+============================================================================================
+
+Compiling
+- gcc [soursecode_filename].c / the commans gcc creates new executable file from the sourse code, by default the name of the file is a.out
+- gcc -o [name_of_ex_file] [soursecode_filename] / the flag -o tells gcc to create the executable file with the name [soursecode_filename]
+
+- gcc -std=c99 -Werror -Wall -Wpedantic -Wextra -o foo [soursecode_filename].c
+    => -sdt=c99 / инструктира gcc да ползва стандарта c99, който е добре описан в ISO 9899 (до 163стр.)
+    => -Werror / третирай warnings като error
+    => -Wall / пуска всички warnings
+    => -Wpedantic / пуска още warnings
+    => -Wextra / пуска всички extra warnings
+ !Кодът който пишем трябва да се компилира с всичкките дадени флагове!
+
+___________________________________________________________
+Makefiles / scripts written in DSL(domain specific lang)
+- рецепта как да се изпълни кодът
+- make [makefile_filename] / команда която изпълнява makefile
+
+___________________________________________________________
+Run
+- [ex_filename] 
+
+___________________________________________________________
+Little/Big endienness
+Отнасят се за битовата репрезентация на данни
+Примерно int има 4 байта и ние трябва да знаем кой е най-важен или този с най-всоки степени на двойката
+- big / най-десния байт е с най-високите степени
+- little / най-левия байт е с най-високите степени
+
+Мислейки си за битовете те ВИНАГИ са от дясно на ляво и от най-маловажен до най-важен
+
+___________________________________________________________
+typedef [име_на_съществуващ_тип] [ново_име_на_типа]
+
+uid_t е typedef-нат unsigned int 4b
+
+___________________________________________________________
+Dynamic memmory
+- void* malloc(size_t size) / алокира
+   => size / #байтове които искаме да заделим
+   => returns pointer към първия байт
+- free(void* ptr) /деалокира
+   => ptr към заделена памет
+
+___________________________________________________________
+int open(const char *pathname, int flags) / алокира файлов дескриптор
+ => returns файлов дескриптор
+int close(int fd) / деалокира файлов дескриптор 
+ => returns exit status
+
+size_t read(int fd, void *buf, size_t count)
+ => fd - file descriptor
+ => buf - пойнтър към първия байт на прочетените байтове (read чете и ги слага там)
+ => count - колко байта искаме да прочетем
+size_t write(int fd, const void *buf, size_t count)
+ => записва от buf count наброй байта и ги записва във файла 
+
+___________________________________________________________
+int main(int argc, char* argv[])
+ - argc /# commandline аргументи които програмата приема +1
+ - argv /масив от пойнтъри сочещи към C style стрингове съдържащи стойността на аргументите
+
+C style string / null terminated string
+ - pointer ---> data..null
+ 
+___________________________________________________________
+fprintf([file_descriptor], format, ...)
+ - format съдържа %d, %s,.... и е стринг
+ - ако например форматът е "%d %d %d" то след това ще оаква още 3 аргумента които са променливи
+
+printf("uid: %d euid: %d\n", me, pret), където me и pret са променливи със стойности
+
+___________________________________________________________
+errno - string
+след като някой systemcall fail-не в errno се записва съобщение за грешка
+пример 
+ - отваряне на несъществуващ файл /no such directory
+ - отваряне на файл без права /permission denided
+
+___________________________________________________________
+lseek(int fd, off_t offset, int whence)
+ => 
+
+Read и Write позициите са еднакви за всеки файлов дескриптор
+
+___________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
