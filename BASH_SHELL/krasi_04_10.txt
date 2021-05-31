@@ -1,0 +1,5 @@
+
+--------1------
+намерете най-често срещания символ различен от ' ' (спейс) в съдържанието на всички shell skript-ове в /bin
+
+find /bin -type f -exec file {} \; | grep 'shell script' | cut -d ':' -f 1 | xargs cat | sed 's/\(.\)/\1n/g' |grep -v " " | sort | uniq -c | sort -n |tail -n 1 |awk '{print $2}
